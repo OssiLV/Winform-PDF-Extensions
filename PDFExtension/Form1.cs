@@ -6,22 +6,31 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+
 
 namespace PDFExtension
 {
     public partial class f_home : System.Windows.Forms.Form
     {
-        string pathFile = string.Empty;
-        string pathFolder = string.Empty;
+        string pathFile, pathFolder, prefix, postfix, seperateCustom = string.Empty;
+        //StringBuilder result = null;
         Dictionary<string, int> book_mark_page = null;
+        Regex reg = null;
 
         PdfBookmarkEditor bookmarkEditor = null;
         PdfReader reader = null;
         public f_home()
         {
             InitializeComponent();
+
+            pathFile = string.Empty;
+            pathFolder = string.Empty ;
+            prefix = string.Empty ;
+            postfix = string.Empty ;
+            reg = new Regex("[<>/\\\\:*?\"|]");
         }
 
         static void OpenFolder(string pathFolder)
@@ -54,7 +63,7 @@ namespace PDFExtension
 
         static string RemoveSpecialChar(string value)
         {
-            Regex reg = new Regex("[*'\",_&#^@?/:<>|]");
+            Regex reg = new Regex("[<>/\\\\:*?\"|]");
             return reg.Replace(value, string.Empty);
         }
 
@@ -73,7 +82,6 @@ namespace PDFExtension
                 pdfCopyProvider = new PdfCopy(sourceDocument, stream);
 
                 sourceDocument.Open();
-
 
                 // Walk the specified range and add the page copies to the output file:
                 for (int i = startPage; i <= endPage; i++)
@@ -137,7 +145,8 @@ namespace PDFExtension
         // (EVENT) Form load
         private void f_home_Load(object sender, EventArgs e)
         {
-
+            t1_rbtn_seperate_1.Checked = true;
+            t1_rtxt_file_name_example.Enabled = false;
             //this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.Fixed3D;
             //this.WindowState = FormWindowState.Maximized;
@@ -211,7 +220,7 @@ namespace PDFExtension
                 t1_txt_open_folder.Text = pathFolder;
             }
 
-        }
+       }
 
 
         // RUN
@@ -219,12 +228,14 @@ namespace PDFExtension
         {
             try
             {
+                Tuple<string, string> tuple = CheckOuputFileName();
+
                 reader = new PdfReader(pathFile);
                 var listBookmarks = book_mark_page.ToList();
                 int y = 1;
                 for (int i = 0; i <= listBookmarks.Count - 1; i++)
                 {
-                    string titleResult = RemoveSpecialChar($"({y++}).{listBookmarks[i].Key}");
+                    string title = RemoveSpecialChar($"{listBookmarks[i].Key}");
                     int fromPage = listBookmarks[i].Value;
                     int toPage = 0;
                     if (i + 1 == listBookmarks.Count)
@@ -236,10 +247,18 @@ namespace PDFExtension
                         toPage = listBookmarks[i + 1].Value - 1;
                     }
 
-                    Console.WriteLine(titleResult + "\t" + "From: " + fromPage + "\t" + "To: " + toPage.ToString());
+                    Console.WriteLine(title + "\t" + "From: " + fromPage + "\t" + "To: " + toPage.ToString());
+
                     if (t1_txt_upload.Text.Length >= 1 && t1_txt_open_folder.Text.Length >= 1)
                     {
-                        ExtractPages(reader, $"{pathFolder}\\{titleResult}.pdf", fromPage, toPage);
+                        string finalTitle = $"{tuple.Item1}{title}{tuple.Item2}";
+
+                        if(finalTitle.Length > 250)
+                        {
+                            finalTitle = $"{tuple.Item1}{title.Substring(0, 40)}...{tuple.Item2}";
+                        }
+
+                        ExtractPages(reader, $"{pathFolder}\\{finalTitle}", fromPage, toPage);
                     }
                 }
                 reader.Close();
@@ -357,15 +376,11 @@ namespace PDFExtension
             }
             catch (Exception ex)
             {
-                if (t2_txt_frompage.Text.Length >= 1 && t2_txt_topage.Text.Length < 1)
-                {
-                    MessageBox.Show("Invalid to page value");
-                }
-                else if (t2_txt_frompage.Text.Length < 1 && t2_txt_topage.Text.Length >= 1)
+                if (t2_txt_frompage.Text.Length < 1 && t2_txt_topage.Text.Length >= 1)
                 {
                     MessageBox.Show("Invalid from page value");
 
-                }
+                }        
                 else
                 {
                     MessageBox.Show(ex.Message);
@@ -385,7 +400,7 @@ namespace PDFExtension
             }
 
             // If you want, you can allow decimal (float) numbers
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
@@ -402,7 +417,7 @@ namespace PDFExtension
             }
 
             // If you want, you can allow decimal (float) numbers
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
@@ -540,12 +555,217 @@ namespace PDFExtension
             }
 
             // If you want, you can allow decimal (float) numbers
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
         }
 
+        private bool ValidatePathFileAndFolderFrom()
+        {
+            if (string.IsNullOrEmpty(pathFile))
+            {
+                MessageBox.Show("Please select a file pdf");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(pathFolder))
+            {
+                MessageBox.Show("Please select a folder to save process");
+                return false;
+            }
+
+            return true;
+        }
+
+
+        private Tuple<string, string> CheckOuputFileName()
+        {
+            bool validate_1 = ValidatePathFileAndFolderFrom();
+
+            try
+            {
+                string fileName = Path.GetFileNameWithoutExtension(pathFile);
+                string fileExtension = Path.GetExtension(pathFile);
+                StringBuilder first = new StringBuilder();
+                StringBuilder last = new StringBuilder();
+                StringBuilder example = new StringBuilder();
+                
+
+                if (validate_1)
+                {
+                    if (t1_rbtn_seperate_1.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_1.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_1.Text);
+                        
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_1.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t1_rbtn_seperate_2.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_2.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_2.Text);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_2.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t1_rbtn_seperate_3.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_3.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_3.Text);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_3.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+                    }
+                    else if (!string.IsNullOrEmpty(seperateCustom))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(seperateCustom);
+                        }
+                        first.Append(fileName);
+                        first.Append(seperateCustom);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(seperateCustom);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+                        
+                    }
+
+                }
+
+
+                t1_rtxt_file_name_example.Text = example.ToString();
+                return Tuple.Create(first.ToString(), last.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return Tuple.Create(string.Empty, string.Empty);
+            }
+        }
+
+        private void t1_btn_check_file_name_output_Click(object sender, EventArgs e)
+        {
+            CheckOuputFileName();
+        }
+
+        private void t1_txt_prefix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_prefix.Text))
+            {
+                t1_txt_prefix.Text = string.Empty;
+                prefix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_postfix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_postfix.Text))
+            {
+                t1_txt_postfix.Text = string.Empty;
+                prefix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_seperate_custom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_seperate_custom.Text))
+            {
+                t1_txt_seperate_custom.Text = string.Empty;
+                seperateCustom = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_seperate_custom_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+            {
+                t1_rbtn_seperate_1.Checked = true;
+                t1_rbtn_seperate_2.Checked = false;
+                t1_rbtn_seperate_3.Checked = false;
+
+                t1_rbtn_seperate_1.Enabled = true;
+                t1_rbtn_seperate_2.Enabled = true;
+                t1_rbtn_seperate_3.Enabled = true;
+
+            } else
+            {
+                t1_rbtn_seperate_1.Checked = false;
+                t1_rbtn_seperate_2.Checked = false;
+                t1_rbtn_seperate_3.Checked = false;
+
+                t1_rbtn_seperate_1.Enabled = false;
+                t1_rbtn_seperate_2.Enabled = false;
+                t1_rbtn_seperate_3.Enabled = false;
+            }
+            seperateCustom = t1_txt_seperate_custom.Text;
+        }
 
         // (EVENT) Clear current data wen change tab
         private void tc_split_by_bookmark_Selecting(object sender, TabControlCancelEventArgs e)
@@ -570,6 +790,40 @@ namespace PDFExtension
             t3_trv_bookmark_structure.Nodes.Clear();
             t3_lb_file_name.Text = string.Empty;
             t3_txt_interval_page.Text = string.Empty;
+
+            t1_rtxt_file_name_example.Text = string.Empty;
+            t1_txt_prefix.Text = string.Empty;
+            t1_txt_postfix.Text = string.Empty;
+            t1_txt_seperate_custom.Text = string.Empty;
+
+            prefix = string.Empty;
+            postfix = string.Empty;
+            seperateCustom = string.Empty;
+        }
+
+        private void t1_txt_prefix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_prefix.Text))
+            {
+                t1_cb_prefix_visible.Checked = false;
+            } else
+            {
+                t1_cb_prefix_visible.Checked = true;
+            }
+            prefix = t1_txt_prefix.Text;
+        }
+
+        private void t1_txt_postfix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_postfix.Text))
+            {
+                t1_cb_postfix_visible.Checked = false;
+            }
+            else
+            {
+                t1_cb_postfix_visible.Checked = true;
+            }
+            postfix = t1_txt_postfix.Text;
         }
     }
 }
