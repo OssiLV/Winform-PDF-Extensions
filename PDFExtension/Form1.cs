@@ -1,9 +1,9 @@
 ﻿using Aspose.Pdf.Facades;
-using iTextSharp.text.exceptions;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,9 +27,9 @@ namespace PDFExtension
             InitializeComponent();
 
             pathFile = string.Empty;
-            pathFolder = string.Empty ;
-            prefix = string.Empty ;
-            postfix = string.Empty ;
+            pathFolder = string.Empty;
+            prefix = string.Empty;
+            postfix = string.Empty;
             reg = new Regex("[<>/\\\\:*?\"|]");
         }
 
@@ -124,21 +124,61 @@ namespace PDFExtension
 
         }
 
-        static bool IsPasswordValid(string pdfFullname, byte[] password)
+        private bool ValidatePathFileAndFolder()
         {
-            try
+            if (string.IsNullOrEmpty(pathFile))
             {
-                using (var pdfReader = new PdfReader(pdfFullname, password))
-                {
-                    // Successfully opened the PDF; it's password protected
-                    return true;
-                }
-            }
-            catch (BadPasswordException)
-            {
-                // Failed to open the PDF; password is incorrect
+                MessageBox.Show("Please select a file pdf");
                 return false;
             }
+
+            if (string.IsNullOrEmpty(pathFolder))
+            {
+                MessageBox.Show("Please select a folder to save process");
+                return false;
+            }
+
+            return true;
+        }
+
+
+        // (EVENT) Clear current data wen change tab
+        private void tc_split_by_bookmark_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            pathFile = string.Empty;
+            pathFolder = string.Empty;
+
+            t1_txt_open_folder.Text = string.Empty;
+            t1_txt_upload.Text = string.Empty;
+            t1_trv_bookmark_structure.Nodes.Clear();
+            t1_lb_file_name.Text = string.Empty;
+
+            t2_txt_open_folder.Text = string.Empty;
+            t2_txt_upload.Text = string.Empty;
+            t2_trv_bookmark_structure.Nodes.Clear();
+            t2_lb_file_name.Text = string.Empty;
+            t2_txt_frompage.Text = string.Empty;
+            t2_txt_topage.Text = string.Empty;
+
+            t3_txt_open_folder.Text = string.Empty;
+            t3_txt_upload.Text = string.Empty;
+            t3_trv_bookmark_structure.Nodes.Clear();
+            t3_lb_file_name.Text = string.Empty;
+            t3_txt_interval_page.Text = string.Empty;
+
+            t1_rtxt_file_name_example.Text = string.Empty;
+            t1_txt_prefix.Text = string.Empty;
+            t1_txt_postfix.Text = string.Empty;
+            t1_txt_seperate_custom.Text = string.Empty;
+
+            t2_rtxt_file_name_example.Text = string.Empty;
+            t2_txt_prefix.Text = string.Empty;
+            t2_txt_postfix.Text = string.Empty;
+            t2_txt_seperate_custom.Text = string.Empty;
+
+            prefix = string.Empty;
+            postfix = string.Empty;
+            seperateCustom = string.Empty;
         }
 
 
@@ -146,12 +186,140 @@ namespace PDFExtension
         private void f_home_Load(object sender, EventArgs e)
         {
             t1_rbtn_seperate_1.Checked = true;
-            t1_rtxt_file_name_example.Enabled = false;
+            t1_rtxt_file_name_example.ReadOnly = true;
+            t1_rtxt_file_name_example.ForeColor = Color.Red;
+
+            t2_rbtn_seperate_1.Checked = true;
+            t2_rtxt_file_name_example.ReadOnly = true;
+            t2_rtxt_file_name_example.ForeColor = Color.Red;
+
+            t3_rbtn_seperate_1.Checked = true;
+            t3_rtxt_file_name_example.ReadOnly = true;
+            t3_rtxt_file_name_example.ForeColor = Color.Red;
+
             //this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.Fixed3D;
             //this.WindowState = FormWindowState.Maximized;
         }
 
+
+        // ============================================= START TAB 1 ============================================================
+
+        private Tuple<string, string> T1_CheckOuputFileName()
+        {
+            bool validatePathFileAndFolder = ValidatePathFileAndFolder();
+
+            try
+            {
+                string fileName = Path.GetFileNameWithoutExtension(pathFile);
+                string fileExtension = Path.GetExtension(pathFile);
+                StringBuilder first = new StringBuilder();
+                StringBuilder last = new StringBuilder();
+                StringBuilder example = new StringBuilder();
+
+
+                if (validatePathFileAndFolder)
+                {
+                    if (t1_rbtn_seperate_1.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_1.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_1.Text);
+
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_1.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t1_rbtn_seperate_2.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_2.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_2.Text);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_2.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t1_rbtn_seperate_3.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t1_rbtn_seperate_3.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t1_rbtn_seperate_3.Text);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t1_rbtn_seperate_3.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+                    }
+                    else if (!string.IsNullOrEmpty(seperateCustom))
+                    {
+                        if (t1_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(seperateCustom);
+                        }
+                        first.Append(fileName);
+                        first.Append(seperateCustom);
+                        if (t1_cb_postfix_visible.Checked)
+                        {
+                            last.Append(seperateCustom);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[bookmar_name]");
+                        example.Append(last.ToString());
+
+                    }
+
+                }
+
+
+                t1_rtxt_file_name_example.Text = example.ToString();
+                return Tuple.Create(first.ToString(), last.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return Tuple.Create(string.Empty, string.Empty);
+            }
+        }
 
         // Upload file path
         private void t1_btn_upload_Click(object sender, EventArgs e)
@@ -220,7 +388,7 @@ namespace PDFExtension
                 t1_txt_open_folder.Text = pathFolder;
             }
 
-       }
+        }
 
 
         // RUN
@@ -228,7 +396,7 @@ namespace PDFExtension
         {
             try
             {
-                Tuple<string, string> tuple = CheckOuputFileName();
+                Tuple<string, string> tuple = T1_CheckOuputFileName();
 
                 reader = new PdfReader(pathFile);
                 var listBookmarks = book_mark_page.ToList();
@@ -253,7 +421,7 @@ namespace PDFExtension
                     {
                         string finalTitle = $"{tuple.Item1}{title}{tuple.Item2}";
 
-                        if(finalTitle.Length > 250)
+                        if (finalTitle.Length > 250)
                         {
                             finalTitle = $"{tuple.Item1}{title.Substring(0, 40)}...{tuple.Item2}";
                         }
@@ -273,6 +441,227 @@ namespace PDFExtension
 
         }
 
+        private void t1_btn_check_file_name_output_Click(object sender, EventArgs e)
+        {
+            T1_CheckOuputFileName();
+        }
+
+        private void t1_txt_prefix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_prefix.Text))
+            {
+                t1_txt_prefix.Text = string.Empty;
+                prefix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_postfix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_postfix.Text))
+            {
+                t1_txt_postfix.Text = string.Empty;
+                prefix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_seperate_custom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t1_txt_seperate_custom.Text))
+            {
+                t1_txt_seperate_custom.Text = string.Empty;
+                seperateCustom = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t1_txt_seperate_custom_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
+            {
+                t1_rbtn_seperate_1.Checked = true;
+                t1_rbtn_seperate_2.Checked = false;
+                t1_rbtn_seperate_3.Checked = false;
+
+                t1_rbtn_seperate_1.Enabled = true;
+                t1_rbtn_seperate_2.Enabled = true;
+                t1_rbtn_seperate_3.Enabled = true;
+
+            }
+            else
+            {
+                t1_rbtn_seperate_1.Checked = false;
+                t1_rbtn_seperate_2.Checked = false;
+                t1_rbtn_seperate_3.Checked = false;
+
+                t1_rbtn_seperate_1.Enabled = false;
+                t1_rbtn_seperate_2.Enabled = false;
+                t1_rbtn_seperate_3.Enabled = false;
+            }
+            seperateCustom = t1_txt_seperate_custom.Text;
+        }
+
+        private void t1_txt_prefix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_prefix.Text))
+            {
+                t1_cb_prefix_visible.Checked = false;
+            }
+            else
+            {
+                t1_cb_prefix_visible.Checked = true;
+            }
+            prefix = t1_txt_prefix.Text;
+        }
+
+        private void t1_txt_postfix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t1_txt_postfix.Text))
+            {
+                t1_cb_postfix_visible.Checked = false;
+            }
+            else
+            {
+                t1_cb_postfix_visible.Checked = true;
+            }
+            postfix = t1_txt_postfix.Text;
+        }
+
+        // ============================================= END TAB 1 ============================================================
+
+
+
+
+        // ============================================= START TAB 2 ============================================================
+
+        private Tuple<string, string> T2_CheckOuputFileName()
+        {
+            bool validatePathFileAndFolder = ValidatePathFileAndFolder();
+
+            try
+            {
+                string fileName = Path.GetFileNameWithoutExtension(pathFile);
+                string fileExtension = Path.GetExtension(pathFile);
+                StringBuilder first = new StringBuilder();
+                StringBuilder last = new StringBuilder();
+                StringBuilder example = new StringBuilder();
+
+
+                if (validatePathFileAndFolder)
+                {
+                    if (t2_rbtn_seperate_1.Checked && string.IsNullOrEmpty(t2_txt_seperate_custom.Text))
+                    {
+                        if (t2_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t2_rbtn_seperate_1.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t2_rbtn_seperate_1.Text);
+
+                        if (t2_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t2_rbtn_seperate_1.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[page xx-yy]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t2_rbtn_seperate_2.Checked && string.IsNullOrEmpty(t2_txt_seperate_custom.Text))
+                    {
+                        if (t2_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t2_rbtn_seperate_2.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t2_rbtn_seperate_2.Text);
+                        if (t2_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t2_rbtn_seperate_2.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[page xx-yy]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t2_rbtn_seperate_3.Checked && string.IsNullOrEmpty(t2_txt_seperate_custom.Text))
+                    {
+                        if (t2_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t2_rbtn_seperate_3.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t2_rbtn_seperate_3.Text);
+                        if (t2_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t2_rbtn_seperate_3.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[page xx-yy]");
+                        example.Append(last.ToString());
+
+                    }
+                    else if (!string.IsNullOrEmpty(seperateCustom))
+                    {
+                        if (t2_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(seperateCustom);
+                        }
+                        first.Append(fileName);
+                        first.Append(seperateCustom);
+                        if (t2_cb_postfix_visible.Checked)
+                        {
+                            last.Append(seperateCustom);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[page xx-yy]");
+                        example.Append(last.ToString());
+
+                    }
+
+                }
+
+
+                t2_rtxt_file_name_example.Text = example.ToString();
+                return Tuple.Create(first.ToString(), last.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return Tuple.Create(string.Empty, string.Empty);
+            }
+        }
 
         // Upload file path
         private void t2_btn_upload_Click(object sender, EventArgs e)
@@ -350,6 +739,8 @@ namespace PDFExtension
         {
             try
             {
+                Tuple<string, string> tuple = T2_CheckOuputFileName();
+
                 reader = new PdfReader(pathFile);
 
                 if (t2_txt_upload.Text != string.Empty
@@ -357,13 +748,14 @@ namespace PDFExtension
                     && t2_txt_frompage.Text != string.Empty
                     )
                 {
+                    string finalTitle = $"{tuple.Item1}{tuple.Item2}";
                     if (t2_txt_topage.Text.Length < 1)
                     {
-                        ExtractPages(reader, $"{t2_txt_open_folder.Text}/(edited) - {Path.GetFileName(pathFile)}", int.Parse(t2_txt_frompage.Text), reader.NumberOfPages);
+                        ExtractPages(reader, $"{t2_txt_open_folder.Text}/{tuple.Item1}Page {t2_txt_frompage.Text}-{reader.NumberOfPages}{tuple.Item2}", int.Parse(t2_txt_frompage.Text), reader.NumberOfPages);
                     }
                     else
                     {
-                        ExtractPages(reader, $"{t2_txt_open_folder.Text}/(edited) - {Path.GetFileName(pathFile)}", int.Parse(t2_txt_frompage.Text), int.Parse(t2_txt_topage.Text));
+                        ExtractPages(reader, $"{t2_txt_open_folder.Text}/{tuple.Item1}Page {t2_txt_frompage.Text}-{t2_txt_topage.Text}{tuple.Item2}", int.Parse(t2_txt_frompage.Text), int.Parse(t2_txt_topage.Text));
                     }
 
                     OpenFolder(pathFolder);
@@ -380,7 +772,7 @@ namespace PDFExtension
                 {
                     MessageBox.Show("Invalid from page value");
 
-                }        
+                }
                 else
                 {
                     MessageBox.Show(ex.Message);
@@ -423,6 +815,228 @@ namespace PDFExtension
             }
         }
 
+        private void t2_txt_prefix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t2_txt_prefix.Text))
+            {
+                t2_cb_prefix_visible.Checked = false;
+            }
+            else
+            {
+                t2_cb_prefix_visible.Checked = true;
+            }
+            prefix = t2_txt_prefix.Text;
+        }
+
+        private void t2_txt_postfix_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t2_txt_postfix.Text))
+            {
+                t2_cb_postfix_visible.Checked = false;
+            }
+            else
+            {
+                t2_cb_postfix_visible.Checked = true;
+            }
+            postfix = t2_txt_postfix.Text;
+        }
+
+        private void t2_txt_seperate_custom_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(t2_txt_seperate_custom.Text))
+            {
+                t2_rbtn_seperate_1.Checked = true;
+                t2_rbtn_seperate_2.Checked = false;
+                t2_rbtn_seperate_3.Checked = false;
+
+                t2_rbtn_seperate_1.Enabled = true;
+                t2_rbtn_seperate_2.Enabled = true;
+                t2_rbtn_seperate_3.Enabled = true;
+
+            }
+            else
+            {
+                t2_rbtn_seperate_1.Checked = false;
+                t2_rbtn_seperate_2.Checked = false;
+                t2_rbtn_seperate_3.Checked = false;
+
+                t2_rbtn_seperate_1.Enabled = false;
+                t2_rbtn_seperate_2.Enabled = false;
+                t2_rbtn_seperate_3.Enabled = false;
+            }
+            seperateCustom = t2_txt_seperate_custom.Text;
+        }
+
+        private void t2_txt_prefix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t2_txt_prefix.Text))
+            {
+                t2_txt_prefix.Text = string.Empty;
+                prefix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t2_txt_postfix_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t2_txt_postfix.Text))
+            {
+                t2_txt_postfix.Text = string.Empty;
+                postfix = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t2_txt_seperate_custom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check for a naughty character in the KeyDown event.
+            if (reg.IsMatch(t2_txt_seperate_custom.Text))
+            {
+                t2_txt_seperate_custom.Text = string.Empty;
+                seperateCustom = string.Empty;
+
+                MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
+                // Stop the character from being entered into the control since it is illegal.
+                e.Handled = true;
+            }
+        }
+
+        private void t2_btn_check_file_name_output_Click(object sender, EventArgs e)
+        {
+            T2_CheckOuputFileName();
+        }
+
+
+        // ============================================= END TAB 2 ============================================================
+
+
+
+
+        // ============================================= START TAB 3 ============================================================
+
+        private Tuple<string, string> T3_CheckOuputFileName()
+        {
+            bool validatePathFileAndFolder = ValidatePathFileAndFolder();
+
+            try
+            {
+                string fileName = Path.GetFileNameWithoutExtension(pathFile);
+                string fileExtension = Path.GetExtension(pathFile);
+                StringBuilder first = new StringBuilder();
+                StringBuilder last = new StringBuilder();
+                StringBuilder example = new StringBuilder();
+
+
+                if (validatePathFileAndFolder)
+                {
+                    if (t3_rbtn_seperate_1.Checked && string.IsNullOrEmpty(t3_txt_seperate_custom.Text))
+                    {
+                        if (t3_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t3_rbtn_seperate_1.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t3_rbtn_seperate_1.Text);
+
+                        if (t3_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t3_rbtn_seperate_1.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[Part n]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t3_rbtn_seperate_2.Checked && string.IsNullOrEmpty(t3_txt_seperate_custom.Text))
+                    {
+                        if (t3_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t3_rbtn_seperate_2.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t3_rbtn_seperate_2.Text);
+                        if (t3_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t3_rbtn_seperate_2.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[Part n]");
+                        example.Append(last.ToString());
+
+
+                    }
+                    else if (t3_rbtn_seperate_3.Checked && string.IsNullOrEmpty(t3_txt_seperate_custom.Text))
+                    {
+                        if (t3_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(t3_rbtn_seperate_3.Text);
+                        }
+                        first.Append(fileName);
+                        first.Append(t3_rbtn_seperate_3.Text);
+                        if (t3_cb_postfix_visible.Checked)
+                        {
+                            last.Append(t3_rbtn_seperate_3.Text);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[Part n]");
+                        example.Append(last.ToString());
+
+                    }
+                    else if (!string.IsNullOrEmpty(seperateCustom))
+                    {
+                        if (t3_cb_prefix_visible.Checked)
+                        {
+                            first.Append(prefix);
+                            first.Append(seperateCustom);
+                        }
+                        first.Append(fileName);
+                        first.Append(seperateCustom);
+                        if (t3_cb_postfix_visible.Checked)
+                        {
+                            last.Append(seperateCustom);
+                            last.Append(postfix);
+                        }
+                        last.Insert(last.ToString().Length, fileExtension);
+
+                        example.Append(first.ToString());
+                        example.Append("[Part n]");
+                        example.Append(last.ToString());
+
+                    }
+
+                }
+
+
+                t3_rtxt_file_name_example.Text = example.ToString();
+                return Tuple.Create(first.ToString(), last.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return Tuple.Create(string.Empty, string.Empty);
+            }
+        }
 
         // Upload file path
         private void t3_btn_upload_Click(object sender, EventArgs e)
@@ -493,6 +1107,8 @@ namespace PDFExtension
         {
             try
             {
+                Tuple<string, string> tuple = T3_CheckOuputFileName();
+
                 reader = new PdfReader(pathFile);
 
                 if (t3_txt_upload.Text != string.Empty
@@ -501,20 +1117,20 @@ namespace PDFExtension
                     )
                 {
                     int interval = int.Parse(t3_txt_interval_page.Text);
-                    int pageNameSuffix = 0;
-                    FileInfo file = new FileInfo(pathFile);
-                    string pdfFileName = file.Name.Substring(0, file.Name.LastIndexOf(".")) + "-";
+                    int count = interval;
+
                     for (int pageNumber = 1; pageNumber <= reader.NumberOfPages; pageNumber += interval)
                     {
-                        pageNameSuffix++;
-                        string newPdfFileName = string.Format( "{0} " + pdfFileName, pageNameSuffix);
+                        string finalFileName = $"{tuple.Item1}Part {count}{tuple.Item2}";
                         SplitAndSaveInterval(
                             reader,
                             pathFolder,
                             pageNumber,
                             interval,
-                            newPdfFileName
+                            finalFileName
                             );
+
+                        count += interval;
                     }
 
                     OpenFolder(pathFolder);
@@ -544,7 +1160,6 @@ namespace PDFExtension
             }
         }
 
-
         // (EVENT) Just accpet number in textbox
         private void t3_txt_interval_page_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -561,151 +1176,64 @@ namespace PDFExtension
             }
         }
 
-        private bool ValidatePathFileAndFolderFrom()
+        private void t3_txt_prefix_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(pathFile))
+            if (string.IsNullOrEmpty(t3_txt_prefix.Text))
             {
-                MessageBox.Show("Please select a file pdf");
-                return false;
+                t3_cb_prefix_visible.Checked = false;
             }
-
-            if (string.IsNullOrEmpty(pathFolder))
+            else
             {
-                MessageBox.Show("Please select a folder to save process");
-                return false;
+                t3_cb_prefix_visible.Checked = true;
             }
-
-            return true;
+            prefix = t3_txt_prefix.Text;
         }
 
-
-        private Tuple<string, string> CheckOuputFileName()
+        private void t3_txt_postfix_TextChanged(object sender, EventArgs e)
         {
-            bool validate_1 = ValidatePathFileAndFolderFrom();
-
-            try
+            if (string.IsNullOrEmpty(t3_txt_postfix.Text))
             {
-                string fileName = Path.GetFileNameWithoutExtension(pathFile);
-                string fileExtension = Path.GetExtension(pathFile);
-                StringBuilder first = new StringBuilder();
-                StringBuilder last = new StringBuilder();
-                StringBuilder example = new StringBuilder();
-                
-
-                if (validate_1)
-                {
-                    if (t1_rbtn_seperate_1.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
-                    {
-                        if (t1_cb_prefix_visible.Checked)
-                        {
-                            first.Append(prefix);
-                            first.Append(t1_rbtn_seperate_1.Text);
-                        }
-                        first.Append(fileName);
-                        first.Append(t1_rbtn_seperate_1.Text);
-                        
-                        if (t1_cb_postfix_visible.Checked)
-                        {
-                            last.Append(t1_rbtn_seperate_1.Text);
-                            last.Append(postfix);
-                        }
-                        last.Insert(last.ToString().Length, fileExtension);
-
-                        example.Append(first.ToString());
-                        example.Append("[bookmar_name]");
-                        example.Append(last.ToString());
-
-
-                    }
-                    else if (t1_rbtn_seperate_2.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
-                    {
-                        if (t1_cb_prefix_visible.Checked)
-                        {
-                            first.Append(prefix);
-                            first.Append(t1_rbtn_seperate_2.Text);
-                        }
-                        first.Append(fileName);
-                        first.Append(t1_rbtn_seperate_2.Text);
-                        if (t1_cb_postfix_visible.Checked)
-                        {
-                            last.Append(t1_rbtn_seperate_2.Text);
-                            last.Append(postfix);
-                        }
-                        last.Insert(last.ToString().Length, fileExtension);
-
-                        example.Append(first.ToString());
-                        example.Append("[bookmar_name]");
-                        example.Append(last.ToString());
-
-
-                    }
-                    else if (t1_rbtn_seperate_3.Checked && string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
-                    {
-                        if (t1_cb_prefix_visible.Checked)
-                        {
-                            first.Append(prefix);
-                            first.Append(t1_rbtn_seperate_3.Text);
-                        }
-                        first.Append(fileName);
-                        first.Append(t1_rbtn_seperate_3.Text);
-                        if (t1_cb_postfix_visible.Checked)
-                        {
-                            last.Append(t1_rbtn_seperate_3.Text);
-                            last.Append(postfix);
-                        }
-                        last.Insert(last.ToString().Length, fileExtension);
-
-                        example.Append(first.ToString());
-                        example.Append("[bookmar_name]");
-                        example.Append(last.ToString());
-
-                    }
-                    else if (!string.IsNullOrEmpty(seperateCustom))
-                    {
-                        if (t1_cb_prefix_visible.Checked)
-                        {
-                            first.Append(prefix);
-                            first.Append(seperateCustom);
-                        }
-                        first.Append(fileName);
-                        first.Append(seperateCustom);
-                        if (t1_cb_postfix_visible.Checked)
-                        {
-                            last.Append(seperateCustom);
-                            last.Append(postfix);
-                        }
-                        last.Insert(last.ToString().Length, fileExtension);
-
-                        example.Append(first.ToString());
-                        example.Append("[bookmar_name]");
-                        example.Append(last.ToString());
-                        
-                    }
-
-                }
-
-
-                t1_rtxt_file_name_example.Text = example.ToString();
-                return Tuple.Create(first.ToString(), last.ToString());
+                t3_cb_postfix_visible.Checked = false;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                return Tuple.Create(string.Empty, string.Empty);
+                t3_cb_postfix_visible.Checked = true;
             }
+            postfix = t3_txt_postfix.Text;
         }
 
-        private void t1_btn_check_file_name_output_Click(object sender, EventArgs e)
+        private void t3_txt_seperate_custom_TextChanged(object sender, EventArgs e)
         {
-            CheckOuputFileName();
+            if (string.IsNullOrEmpty(t3_txt_seperate_custom.Text))
+            {
+                t3_rbtn_seperate_1.Checked = true;
+                t3_rbtn_seperate_2.Checked = false;
+                t3_rbtn_seperate_3.Checked = false;
+
+                t3_rbtn_seperate_1.Enabled = true;
+                t3_rbtn_seperate_2.Enabled = true;
+                t3_rbtn_seperate_3.Enabled = true;
+
+            }
+            else
+            {
+                t3_rbtn_seperate_1.Checked = false;
+                t3_rbtn_seperate_2.Checked = false;
+                t3_rbtn_seperate_3.Checked = false;
+
+                t3_rbtn_seperate_1.Enabled = false;
+                t3_rbtn_seperate_2.Enabled = false;
+                t3_rbtn_seperate_3.Enabled = false;
+            }
+            seperateCustom = t3_txt_seperate_custom.Text;
         }
 
-        private void t1_txt_prefix_KeyPress(object sender, KeyPressEventArgs e)
+        private void t3_txt_prefix_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check for a naughty character in the KeyDown event.
-            if (reg.IsMatch(t1_txt_prefix.Text))
+            if (reg.IsMatch(t3_txt_prefix.Text))
             {
-                t1_txt_prefix.Text = string.Empty;
+                t3_txt_prefix.Text = string.Empty;
                 prefix = string.Empty;
 
                 MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
@@ -714,13 +1242,13 @@ namespace PDFExtension
             }
         }
 
-        private void t1_txt_postfix_KeyPress(object sender, KeyPressEventArgs e)
+        private void t3_txt_postfix_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check for a naughty character in the KeyDown event.
-            if (reg.IsMatch(t1_txt_postfix.Text))
+            if (reg.IsMatch(t3_txt_postfix.Text))
             {
-                t1_txt_postfix.Text = string.Empty;
-                prefix = string.Empty;
+                t3_txt_postfix.Text = string.Empty;
+                postfix = string.Empty;
 
                 MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
                 // Stop the character from being entered into the control since it is illegal.
@@ -728,12 +1256,12 @@ namespace PDFExtension
             }
         }
 
-        private void t1_txt_seperate_custom_KeyPress(object sender, KeyPressEventArgs e)
+        private void t3_txt_seperate_custom_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Check for a naughty character in the KeyDown event.
-            if (reg.IsMatch(t1_txt_seperate_custom.Text))
+            if (reg.IsMatch(t3_txt_seperate_custom.Text))
             {
-                t1_txt_seperate_custom.Text = string.Empty;
+                t3_txt_seperate_custom.Text = string.Empty;
                 seperateCustom = string.Empty;
 
                 MessageBox.Show("Name file invalid\n Don't use this special characters / : \\ * ? \" < > |");
@@ -742,88 +1270,12 @@ namespace PDFExtension
             }
         }
 
-        private void t1_txt_seperate_custom_TextChanged(object sender, EventArgs e)
+        private void t3_btn_check_file_name_output_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(t1_txt_seperate_custom.Text))
-            {
-                t1_rbtn_seperate_1.Checked = true;
-                t1_rbtn_seperate_2.Checked = false;
-                t1_rbtn_seperate_3.Checked = false;
-
-                t1_rbtn_seperate_1.Enabled = true;
-                t1_rbtn_seperate_2.Enabled = true;
-                t1_rbtn_seperate_3.Enabled = true;
-
-            } else
-            {
-                t1_rbtn_seperate_1.Checked = false;
-                t1_rbtn_seperate_2.Checked = false;
-                t1_rbtn_seperate_3.Checked = false;
-
-                t1_rbtn_seperate_1.Enabled = false;
-                t1_rbtn_seperate_2.Enabled = false;
-                t1_rbtn_seperate_3.Enabled = false;
-            }
-            seperateCustom = t1_txt_seperate_custom.Text;
+            T3_CheckOuputFileName();
         }
 
-        // (EVENT) Clear current data wen change tab
-        private void tc_split_by_bookmark_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            pathFile = string.Empty;
-            pathFolder  = string.Empty;
+        // ============================================= END TAB 3 ============================================================
 
-            t1_txt_open_folder.Text = string.Empty;
-            t1_txt_upload.Text = string.Empty;
-            t1_trv_bookmark_structure.Nodes.Clear();
-            t1_lb_file_name.Text = string.Empty;
-
-            t2_txt_open_folder.Text = string.Empty;
-            t2_txt_upload.Text = string.Empty;
-            t2_trv_bookmark_structure.Nodes.Clear();
-            t2_lb_file_name.Text = string.Empty;
-            t2_txt_frompage.Text = string.Empty;
-            t2_txt_topage.Text = string.Empty;
-
-            t3_txt_open_folder.Text = string.Empty;
-            t3_txt_upload.Text = string.Empty;
-            t3_trv_bookmark_structure.Nodes.Clear();
-            t3_lb_file_name.Text = string.Empty;
-            t3_txt_interval_page.Text = string.Empty;
-
-            t1_rtxt_file_name_example.Text = string.Empty;
-            t1_txt_prefix.Text = string.Empty;
-            t1_txt_postfix.Text = string.Empty;
-            t1_txt_seperate_custom.Text = string.Empty;
-
-            prefix = string.Empty;
-            postfix = string.Empty;
-            seperateCustom = string.Empty;
-        }
-
-        private void t1_txt_prefix_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(t1_txt_prefix.Text))
-            {
-                t1_cb_prefix_visible.Checked = false;
-            } else
-            {
-                t1_cb_prefix_visible.Checked = true;
-            }
-            prefix = t1_txt_prefix.Text;
-        }
-
-        private void t1_txt_postfix_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(t1_txt_postfix.Text))
-            {
-                t1_cb_postfix_visible.Checked = false;
-            }
-            else
-            {
-                t1_cb_postfix_visible.Checked = true;
-            }
-            postfix = t1_txt_postfix.Text;
-        }
     }
 }
