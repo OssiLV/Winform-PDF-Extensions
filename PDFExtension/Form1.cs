@@ -16,7 +16,6 @@ namespace PDFExtension
     public partial class f_home : System.Windows.Forms.Form
     {
         string pathFile, pathFolder, prefix, postfix, seperateCustom = string.Empty;
-        //StringBuilder result = null;
         Dictionary<string, int> book_mark_page = null;
         Regex reg = null;
 
@@ -57,8 +56,6 @@ namespace PDFExtension
             {
                 MessageBox.Show(string.Format("{0} Directory does not exist!", pathFolder));
             }
-
-
         }
 
         static string RemoveSpecialChar(string value)
@@ -175,6 +172,11 @@ namespace PDFExtension
             t2_txt_prefix.Text = string.Empty;
             t2_txt_postfix.Text = string.Empty;
             t2_txt_seperate_custom.Text = string.Empty;
+
+            t3_rtxt_file_name_example.Text = string.Empty;
+            t3_txt_prefix.Text = string.Empty;
+            t3_txt_postfix.Text = string.Empty;
+            t3_txt_seperate_custom.Text = string.Empty;
 
             prefix = string.Empty;
             postfix = string.Empty;
@@ -398,6 +400,9 @@ namespace PDFExtension
             {
                 Tuple<string, string> tuple = T1_CheckOuputFileName();
 
+                if(tuple.Item1 == string.Empty && tuple.Item2 == string.Empty)
+                    return;
+
                 reader = new PdfReader(pathFile);
                 var listBookmarks = book_mark_page.ToList();
                 int y = 1;
@@ -436,7 +441,7 @@ namespace PDFExtension
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex.Message);
             }
 
         }
@@ -740,6 +745,9 @@ namespace PDFExtension
             try
             {
                 Tuple<string, string> tuple = T2_CheckOuputFileName();
+
+                if (tuple.Item1 == string.Empty && tuple.Item2 == string.Empty)
+                    return;
 
                 reader = new PdfReader(pathFile);
 
@@ -1108,6 +1116,9 @@ namespace PDFExtension
             try
             {
                 Tuple<string, string> tuple = T3_CheckOuputFileName();
+
+                if (tuple.Item1 == string.Empty && tuple.Item2 == string.Empty)
+                    return;
 
                 reader = new PdfReader(pathFile);
 
