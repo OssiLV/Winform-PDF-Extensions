@@ -1,6 +1,6 @@
 ﻿namespace PDFExtension
 {
-    partial class f_home
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.t1_trv_bookmark_structure = new System.Windows.Forms.TreeView();
             this.grb_in_out = new System.Windows.Forms.GroupBox();
+            this.t1_grb_action_view = new System.Windows.Forms.GroupBox();
+            this.t1_rbtn_actions_lv3 = new System.Windows.Forms.RadioButton();
+            this.t1_rbtn_actions_lv2 = new System.Windows.Forms.RadioButton();
+            this.t1_rbtn_actions_lv1 = new System.Windows.Forms.RadioButton();
+            this.t1_rbtn_actions_all = new System.Windows.Forms.RadioButton();
             this.t1_btn_check_file_name_output = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.t1_gb_seperate = new System.Windows.Forms.GroupBox();
@@ -56,33 +61,7 @@
             this.t1_txt_upload = new System.Windows.Forms.TextBox();
             this.t1_btn_upload = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.t2_trv_bookmark_structure = new System.Windows.Forms.TreeView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.t2_txt_topage = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.t2_txt_frompage = new System.Windows.Forms.TextBox();
-            this.t2_btn_run = new System.Windows.Forms.Button();
-            this.t2_lb_file_name = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.t2_txt_open_folder = new System.Windows.Forms.TextBox();
-            this.t2_btn_open_folder = new System.Windows.Forms.Button();
-            this.t2_txt_upload = new System.Windows.Forms.TextBox();
-            this.t2_btn_upload = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.t3_trv_bookmark_structure = new System.Windows.Forms.TreeView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.t3_txt_interval_page = new System.Windows.Forms.TextBox();
-            this.t3_btn_run = new System.Windows.Forms.Button();
-            this.t3_lb_file_name = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.t3_txt_open_folder = new System.Windows.Forms.TextBox();
-            this.t3_btn_open_folder = new System.Windows.Forms.Button();
-            this.t3_txt_upload = new System.Windows.Forms.TextBox();
-            this.t3_btn_upload = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.t2_txt_seperate_custom = new System.Windows.Forms.TextBox();
@@ -98,6 +77,20 @@
             this.t2_btn_check_file_name_output = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.t2_rtxt_file_name_example = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.t2_txt_topage = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.t2_txt_frompage = new System.Windows.Forms.TextBox();
+            this.t2_btn_run = new System.Windows.Forms.Button();
+            this.t2_lb_file_name = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.t2_txt_open_folder = new System.Windows.Forms.TextBox();
+            this.t2_btn_open_folder = new System.Windows.Forms.Button();
+            this.t2_txt_upload = new System.Windows.Forms.TextBox();
+            this.t2_btn_upload = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.t3_txt_seperate_custom = new System.Windows.Forms.TextBox();
@@ -113,15 +106,26 @@
             this.t3_btn_check_file_name_output = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.t3_rtxt_file_name_example = new System.Windows.Forms.RichTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.t3_txt_interval_page = new System.Windows.Forms.TextBox();
+            this.t3_btn_run = new System.Windows.Forms.Button();
+            this.t3_lb_file_name = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.t3_txt_open_folder = new System.Windows.Forms.TextBox();
+            this.t3_btn_open_folder = new System.Windows.Forms.Button();
+            this.t3_txt_upload = new System.Windows.Forms.TextBox();
+            this.t3_btn_upload = new System.Windows.Forms.Button();
             this.tc_split_by_bookmark.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grb_in_out.SuspendLayout();
+            this.t1_grb_action_view.SuspendLayout();
             this.t1_gb_seperate.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,6 +157,7 @@
             // t1_trv_bookmark_structure
             // 
             this.t1_trv_bookmark_structure.Dock = System.Windows.Forms.DockStyle.Right;
+            this.t1_trv_bookmark_structure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.t1_trv_bookmark_structure.Location = new System.Drawing.Point(850, 3);
             this.t1_trv_bookmark_structure.Name = "t1_trv_bookmark_structure";
             this.t1_trv_bookmark_structure.Size = new System.Drawing.Size(430, 578);
@@ -160,6 +165,7 @@
             // 
             // grb_in_out
             // 
+            this.grb_in_out.Controls.Add(this.t1_grb_action_view);
             this.grb_in_out.Controls.Add(this.t1_btn_check_file_name_output);
             this.grb_in_out.Controls.Add(this.label13);
             this.grb_in_out.Controls.Add(this.t1_gb_seperate);
@@ -184,6 +190,67 @@
             this.grb_in_out.TabIndex = 3;
             this.grb_in_out.TabStop = false;
             // 
+            // t1_grb_action_view
+            // 
+            this.t1_grb_action_view.Controls.Add(this.t1_rbtn_actions_lv3);
+            this.t1_grb_action_view.Controls.Add(this.t1_rbtn_actions_lv2);
+            this.t1_grb_action_view.Controls.Add(this.t1_rbtn_actions_lv1);
+            this.t1_grb_action_view.Controls.Add(this.t1_rbtn_actions_all);
+            this.t1_grb_action_view.Location = new System.Drawing.Point(650, 1);
+            this.t1_grb_action_view.Name = "t1_grb_action_view";
+            this.t1_grb_action_view.Size = new System.Drawing.Size(138, 181);
+            this.t1_grb_action_view.TabIndex = 20;
+            this.t1_grb_action_view.TabStop = false;
+            this.t1_grb_action_view.Text = "Actions";
+            // 
+            // t1_rbtn_actions_lv3
+            // 
+            this.t1_rbtn_actions_lv3.AutoSize = true;
+            this.t1_rbtn_actions_lv3.Location = new System.Drawing.Point(7, 98);
+            this.t1_rbtn_actions_lv3.Name = "t1_rbtn_actions_lv3";
+            this.t1_rbtn_actions_lv3.Size = new System.Drawing.Size(75, 21);
+            this.t1_rbtn_actions_lv3.TabIndex = 3;
+            this.t1_rbtn_actions_lv3.TabStop = true;
+            this.t1_rbtn_actions_lv3.Text = "Level 3";
+            this.t1_rbtn_actions_lv3.UseVisualStyleBackColor = true;
+            this.t1_rbtn_actions_lv3.CheckedChanged += new System.EventHandler(this.t1_rbtn_actions_lv3_CheckedChanged);
+            // 
+            // t1_rbtn_actions_lv2
+            // 
+            this.t1_rbtn_actions_lv2.AutoSize = true;
+            this.t1_rbtn_actions_lv2.Location = new System.Drawing.Point(7, 72);
+            this.t1_rbtn_actions_lv2.Name = "t1_rbtn_actions_lv2";
+            this.t1_rbtn_actions_lv2.Size = new System.Drawing.Size(75, 21);
+            this.t1_rbtn_actions_lv2.TabIndex = 2;
+            this.t1_rbtn_actions_lv2.TabStop = true;
+            this.t1_rbtn_actions_lv2.Text = "Level 2";
+            this.t1_rbtn_actions_lv2.UseVisualStyleBackColor = true;
+            this.t1_rbtn_actions_lv2.CheckedChanged += new System.EventHandler(this.t1_rbtn_actions_lv2_CheckedChanged);
+            // 
+            // t1_rbtn_actions_lv1
+            // 
+            this.t1_rbtn_actions_lv1.AutoSize = true;
+            this.t1_rbtn_actions_lv1.Location = new System.Drawing.Point(7, 46);
+            this.t1_rbtn_actions_lv1.Name = "t1_rbtn_actions_lv1";
+            this.t1_rbtn_actions_lv1.Size = new System.Drawing.Size(75, 21);
+            this.t1_rbtn_actions_lv1.TabIndex = 1;
+            this.t1_rbtn_actions_lv1.TabStop = true;
+            this.t1_rbtn_actions_lv1.Text = "Level 1";
+            this.t1_rbtn_actions_lv1.UseVisualStyleBackColor = true;
+            this.t1_rbtn_actions_lv1.CheckedChanged += new System.EventHandler(this.t1_rbtn_actions_lv1_CheckedChanged);
+            // 
+            // t1_rbtn_actions_all
+            // 
+            this.t1_rbtn_actions_all.AutoSize = true;
+            this.t1_rbtn_actions_all.Location = new System.Drawing.Point(7, 21);
+            this.t1_rbtn_actions_all.Name = "t1_rbtn_actions_all";
+            this.t1_rbtn_actions_all.Size = new System.Drawing.Size(44, 21);
+            this.t1_rbtn_actions_all.TabIndex = 0;
+            this.t1_rbtn_actions_all.TabStop = true;
+            this.t1_rbtn_actions_all.Text = "All";
+            this.t1_rbtn_actions_all.UseVisualStyleBackColor = true;
+            this.t1_rbtn_actions_all.CheckedChanged += new System.EventHandler(this.t1_rbtn_actions_all_CheckedChanged);
+            // 
             // t1_btn_check_file_name_output
             // 
             this.t1_btn_check_file_name_output.Location = new System.Drawing.Point(411, 438);
@@ -197,9 +264,9 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 455);
+            this.label13.Location = new System.Drawing.Point(9, 456);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(101, 16);
+            this.label13.Size = new System.Drawing.Size(108, 17);
             this.label13.TabIndex = 17;
             this.label13.Text = "Output Example";
             // 
@@ -222,7 +289,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(171, 23);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 16);
+            this.label12.Size = new System.Drawing.Size(55, 17);
             this.label12.TabIndex = 17;
             this.label12.Text = "Custom";
             // 
@@ -230,7 +297,7 @@
             // 
             this.t1_txt_seperate_custom.Location = new System.Drawing.Point(174, 42);
             this.t1_txt_seperate_custom.Name = "t1_txt_seperate_custom";
-            this.t1_txt_seperate_custom.Size = new System.Drawing.Size(88, 22);
+            this.t1_txt_seperate_custom.Size = new System.Drawing.Size(88, 23);
             this.t1_txt_seperate_custom.TabIndex = 18;
             this.t1_txt_seperate_custom.TextChanged += new System.EventHandler(this.t1_txt_seperate_custom_TextChanged);
             this.t1_txt_seperate_custom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t1_txt_seperate_custom_KeyPress);
@@ -240,7 +307,7 @@
             this.t1_rbtn_seperate_3.AutoSize = true;
             this.t1_rbtn_seperate_3.Location = new System.Drawing.Point(8, 73);
             this.t1_rbtn_seperate_3.Name = "t1_rbtn_seperate_3";
-            this.t1_rbtn_seperate_3.Size = new System.Drawing.Size(32, 20);
+            this.t1_rbtn_seperate_3.Size = new System.Drawing.Size(34, 21);
             this.t1_rbtn_seperate_3.TabIndex = 17;
             this.t1_rbtn_seperate_3.TabStop = true;
             this.t1_rbtn_seperate_3.Text = "-";
@@ -251,7 +318,7 @@
             this.t1_rbtn_seperate_2.AutoSize = true;
             this.t1_rbtn_seperate_2.Location = new System.Drawing.Point(8, 47);
             this.t1_rbtn_seperate_2.Name = "t1_rbtn_seperate_2";
-            this.t1_rbtn_seperate_2.Size = new System.Drawing.Size(35, 20);
+            this.t1_rbtn_seperate_2.Size = new System.Drawing.Size(37, 21);
             this.t1_rbtn_seperate_2.TabIndex = 16;
             this.t1_rbtn_seperate_2.TabStop = true;
             this.t1_rbtn_seperate_2.Text = "_";
@@ -262,7 +329,7 @@
             this.t1_rbtn_seperate_1.AutoSize = true;
             this.t1_rbtn_seperate_1.Location = new System.Drawing.Point(8, 21);
             this.t1_rbtn_seperate_1.Name = "t1_rbtn_seperate_1";
-            this.t1_rbtn_seperate_1.Size = new System.Drawing.Size(42, 20);
+            this.t1_rbtn_seperate_1.Size = new System.Drawing.Size(43, 21);
             this.t1_rbtn_seperate_1.TabIndex = 15;
             this.t1_rbtn_seperate_1.TabStop = true;
             this.t1_rbtn_seperate_1.Text = "@";
@@ -273,7 +340,7 @@
             this.t1_cb_postfix_visible.AutoSize = true;
             this.t1_cb_postfix_visible.Location = new System.Drawing.Point(383, 296);
             this.t1_cb_postfix_visible.Name = "t1_cb_postfix_visible";
-            this.t1_cb_postfix_visible.Size = new System.Drawing.Size(68, 20);
+            this.t1_cb_postfix_visible.Size = new System.Drawing.Size(69, 21);
             this.t1_cb_postfix_visible.TabIndex = 14;
             this.t1_cb_postfix_visible.Text = "visible";
             this.t1_cb_postfix_visible.UseVisualStyleBackColor = true;
@@ -283,7 +350,7 @@
             this.t1_cb_prefix_visible.AutoSize = true;
             this.t1_cb_prefix_visible.Location = new System.Drawing.Point(383, 232);
             this.t1_cb_prefix_visible.Name = "t1_cb_prefix_visible";
-            this.t1_cb_prefix_visible.Size = new System.Drawing.Size(68, 20);
+            this.t1_cb_prefix_visible.Size = new System.Drawing.Size(69, 21);
             this.t1_cb_prefix_visible.TabIndex = 13;
             this.t1_cb_prefix_visible.Text = "visible";
             this.t1_cb_prefix_visible.UseVisualStyleBackColor = true;
@@ -293,7 +360,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(11, 275);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 16);
+            this.label9.Size = new System.Drawing.Size(49, 17);
             this.label9.TabIndex = 12;
             this.label9.Text = "Postfix";
             // 
@@ -301,7 +368,7 @@
             // 
             this.t1_txt_postfix.Location = new System.Drawing.Point(11, 294);
             this.t1_txt_postfix.Name = "t1_txt_postfix";
-            this.t1_txt_postfix.Size = new System.Drawing.Size(362, 22);
+            this.t1_txt_postfix.Size = new System.Drawing.Size(362, 23);
             this.t1_txt_postfix.TabIndex = 11;
             this.t1_txt_postfix.TextChanged += new System.EventHandler(this.t1_txt_postfix_TextChanged);
             this.t1_txt_postfix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t1_txt_postfix_KeyPress);
@@ -311,7 +378,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 212);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Prefix";
             // 
@@ -319,13 +386,14 @@
             // 
             this.t1_txt_prefix.Location = new System.Drawing.Point(11, 231);
             this.t1_txt_prefix.Name = "t1_txt_prefix";
-            this.t1_txt_prefix.Size = new System.Drawing.Size(362, 22);
+            this.t1_txt_prefix.Size = new System.Drawing.Size(362, 23);
             this.t1_txt_prefix.TabIndex = 9;
             this.t1_txt_prefix.TextChanged += new System.EventHandler(this.t1_txt_prefix_TextChanged);
             this.t1_txt_prefix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t1_txt_prefix_KeyPress);
             // 
             // t1_rtxt_file_name_example
             // 
+            this.t1_rtxt_file_name_example.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.t1_rtxt_file_name_example.Location = new System.Drawing.Point(10, 467);
             this.t1_rtxt_file_name_example.Name = "t1_rtxt_file_name_example";
             this.t1_rtxt_file_name_example.Size = new System.Drawing.Size(480, 59);
@@ -347,7 +415,7 @@
             this.t1_lb_file_name.AutoSize = true;
             this.t1_lb_file_name.Location = new System.Drawing.Point(371, 22);
             this.t1_lb_file_name.Name = "t1_lb_file_name";
-            this.t1_lb_file_name.Size = new System.Drawing.Size(0, 16);
+            this.t1_lb_file_name.Size = new System.Drawing.Size(0, 17);
             this.t1_lb_file_name.TabIndex = 6;
             // 
             // label2
@@ -355,7 +423,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 92);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 16);
+            this.label2.Size = new System.Drawing.Size(91, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "Output folder";
             // 
@@ -364,7 +432,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Upload file";
             // 
@@ -372,7 +440,7 @@
             // 
             this.t1_txt_open_folder.Location = new System.Drawing.Point(6, 114);
             this.t1_txt_open_folder.Name = "t1_txt_open_folder";
-            this.t1_txt_open_folder.Size = new System.Drawing.Size(362, 22);
+            this.t1_txt_open_folder.Size = new System.Drawing.Size(362, 23);
             this.t1_txt_open_folder.TabIndex = 3;
             // 
             // t1_btn_open_folder
@@ -389,7 +457,7 @@
             // 
             this.t1_txt_upload.Location = new System.Drawing.Point(6, 45);
             this.t1_txt_upload.Name = "t1_txt_upload";
-            this.t1_txt_upload.Size = new System.Drawing.Size(362, 22);
+            this.t1_txt_upload.Size = new System.Drawing.Size(362, 23);
             this.t1_txt_upload.TabIndex = 1;
             // 
             // t1_btn_upload
@@ -404,7 +472,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.t2_trv_bookmark_structure);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -413,14 +480,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Split by page range";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // t2_trv_bookmark_structure
-            // 
-            this.t2_trv_bookmark_structure.Dock = System.Windows.Forms.DockStyle.Right;
-            this.t2_trv_bookmark_structure.Location = new System.Drawing.Point(850, 3);
-            this.t2_trv_bookmark_structure.Name = "t2_trv_bookmark_structure";
-            this.t2_trv_bookmark_structure.Size = new System.Drawing.Size(430, 578);
-            this.t2_trv_bookmark_structure.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -452,12 +511,161 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.t2_txt_seperate_custom);
+            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_3);
+            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_2);
+            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_1);
+            this.groupBox3.Location = new System.Drawing.Point(10, 333);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(395, 100);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Seperate";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(171, 23);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 17);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Custom";
+            // 
+            // t2_txt_seperate_custom
+            // 
+            this.t2_txt_seperate_custom.Location = new System.Drawing.Point(174, 42);
+            this.t2_txt_seperate_custom.Name = "t2_txt_seperate_custom";
+            this.t2_txt_seperate_custom.Size = new System.Drawing.Size(88, 23);
+            this.t2_txt_seperate_custom.TabIndex = 18;
+            this.t2_txt_seperate_custom.TextChanged += new System.EventHandler(this.t2_txt_seperate_custom_TextChanged);
+            this.t2_txt_seperate_custom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_seperate_custom_KeyPress);
+            // 
+            // t2_rbtn_seperate_3
+            // 
+            this.t2_rbtn_seperate_3.AutoSize = true;
+            this.t2_rbtn_seperate_3.Location = new System.Drawing.Point(8, 73);
+            this.t2_rbtn_seperate_3.Name = "t2_rbtn_seperate_3";
+            this.t2_rbtn_seperate_3.Size = new System.Drawing.Size(34, 21);
+            this.t2_rbtn_seperate_3.TabIndex = 17;
+            this.t2_rbtn_seperate_3.TabStop = true;
+            this.t2_rbtn_seperate_3.Text = "-";
+            this.t2_rbtn_seperate_3.UseVisualStyleBackColor = true;
+            // 
+            // t2_rbtn_seperate_2
+            // 
+            this.t2_rbtn_seperate_2.AutoSize = true;
+            this.t2_rbtn_seperate_2.Location = new System.Drawing.Point(8, 47);
+            this.t2_rbtn_seperate_2.Name = "t2_rbtn_seperate_2";
+            this.t2_rbtn_seperate_2.Size = new System.Drawing.Size(37, 21);
+            this.t2_rbtn_seperate_2.TabIndex = 16;
+            this.t2_rbtn_seperate_2.TabStop = true;
+            this.t2_rbtn_seperate_2.Text = "_";
+            this.t2_rbtn_seperate_2.UseVisualStyleBackColor = true;
+            // 
+            // t2_rbtn_seperate_1
+            // 
+            this.t2_rbtn_seperate_1.AutoSize = true;
+            this.t2_rbtn_seperate_1.Location = new System.Drawing.Point(8, 21);
+            this.t2_rbtn_seperate_1.Name = "t2_rbtn_seperate_1";
+            this.t2_rbtn_seperate_1.Size = new System.Drawing.Size(43, 21);
+            this.t2_rbtn_seperate_1.TabIndex = 15;
+            this.t2_rbtn_seperate_1.TabStop = true;
+            this.t2_rbtn_seperate_1.Text = "@";
+            this.t2_rbtn_seperate_1.UseVisualStyleBackColor = true;
+            // 
+            // t2_cb_postfix_visible
+            // 
+            this.t2_cb_postfix_visible.AutoSize = true;
+            this.t2_cb_postfix_visible.Location = new System.Drawing.Point(383, 296);
+            this.t2_cb_postfix_visible.Name = "t2_cb_postfix_visible";
+            this.t2_cb_postfix_visible.Size = new System.Drawing.Size(69, 21);
+            this.t2_cb_postfix_visible.TabIndex = 26;
+            this.t2_cb_postfix_visible.Text = "visible";
+            this.t2_cb_postfix_visible.UseVisualStyleBackColor = true;
+            // 
+            // t2_cb_prefix_visible
+            // 
+            this.t2_cb_prefix_visible.AutoSize = true;
+            this.t2_cb_prefix_visible.Location = new System.Drawing.Point(383, 232);
+            this.t2_cb_prefix_visible.Name = "t2_cb_prefix_visible";
+            this.t2_cb_prefix_visible.Size = new System.Drawing.Size(69, 21);
+            this.t2_cb_prefix_visible.TabIndex = 25;
+            this.t2_cb_prefix_visible.Text = "visible";
+            this.t2_cb_prefix_visible.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(11, 275);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(49, 17);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "Postfix";
+            // 
+            // t2_txt_postfix
+            // 
+            this.t2_txt_postfix.Location = new System.Drawing.Point(11, 294);
+            this.t2_txt_postfix.Name = "t2_txt_postfix";
+            this.t2_txt_postfix.Size = new System.Drawing.Size(362, 23);
+            this.t2_txt_postfix.TabIndex = 23;
+            this.t2_txt_postfix.TextChanged += new System.EventHandler(this.t2_txt_postfix_TextChanged);
+            this.t2_txt_postfix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_postfix_KeyPress);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(11, 212);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 17);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Prefix";
+            // 
+            // t2_txt_prefix
+            // 
+            this.t2_txt_prefix.Location = new System.Drawing.Point(11, 231);
+            this.t2_txt_prefix.Name = "t2_txt_prefix";
+            this.t2_txt_prefix.Size = new System.Drawing.Size(362, 23);
+            this.t2_txt_prefix.TabIndex = 21;
+            this.t2_txt_prefix.TextChanged += new System.EventHandler(this.t2_txt_prefix_TextChanged);
+            this.t2_txt_prefix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_prefix_KeyPress);
+            // 
+            // t2_btn_check_file_name_output
+            // 
+            this.t2_btn_check_file_name_output.Location = new System.Drawing.Point(411, 438);
+            this.t2_btn_check_file_name_output.Name = "t2_btn_check_file_name_output";
+            this.t2_btn_check_file_name_output.Size = new System.Drawing.Size(75, 23);
+            this.t2_btn_check_file_name_output.TabIndex = 29;
+            this.t2_btn_check_file_name_output.Text = "Check";
+            this.t2_btn_check_file_name_output.UseVisualStyleBackColor = true;
+            this.t2_btn_check_file_name_output.Click += new System.EventHandler(this.t2_btn_check_file_name_output_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 456);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(108, 17);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "Output Example";
+            // 
+            // t2_rtxt_file_name_example
+            // 
+            this.t2_rtxt_file_name_example.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t2_rtxt_file_name_example.Location = new System.Drawing.Point(10, 467);
+            this.t2_rtxt_file_name_example.Name = "t2_rtxt_file_name_example";
+            this.t2_rtxt_file_name_example.Size = new System.Drawing.Size(480, 59);
+            this.t2_rtxt_file_name_example.TabIndex = 20;
+            this.t2_rtxt_file_name_example.Text = "";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(223, 171);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 16);
+            this.label7.Size = new System.Drawing.Size(65, 17);
             this.label7.TabIndex = 12;
             this.label7.Text = "To page:";
             // 
@@ -465,7 +673,7 @@
             // 
             this.t2_txt_topage.Location = new System.Drawing.Point(291, 168);
             this.t2_txt_topage.Name = "t2_txt_topage";
-            this.t2_txt_topage.Size = new System.Drawing.Size(100, 22);
+            this.t2_txt_topage.Size = new System.Drawing.Size(100, 23);
             this.t2_txt_topage.TabIndex = 11;
             this.t2_txt_topage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_topage_KeyPress);
             // 
@@ -474,7 +682,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(11, 168);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 16);
+            this.label6.Size = new System.Drawing.Size(80, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "From page:";
             // 
@@ -482,7 +690,7 @@
             // 
             this.t2_txt_frompage.Location = new System.Drawing.Point(93, 168);
             this.t2_txt_frompage.Name = "t2_txt_frompage";
-            this.t2_txt_frompage.Size = new System.Drawing.Size(100, 22);
+            this.t2_txt_frompage.Size = new System.Drawing.Size(100, 23);
             this.t2_txt_frompage.TabIndex = 8;
             this.t2_txt_frompage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_frompage_KeyPress);
             // 
@@ -501,7 +709,7 @@
             this.t2_lb_file_name.AutoSize = true;
             this.t2_lb_file_name.Location = new System.Drawing.Point(371, 22);
             this.t2_lb_file_name.Name = "t2_lb_file_name";
-            this.t2_lb_file_name.Size = new System.Drawing.Size(0, 16);
+            this.t2_lb_file_name.Size = new System.Drawing.Size(0, 17);
             this.t2_lb_file_name.TabIndex = 6;
             // 
             // label4
@@ -509,7 +717,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(7, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 16);
+            this.label4.Size = new System.Drawing.Size(91, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Output folder";
             // 
@@ -518,7 +726,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 16);
+            this.label5.Size = new System.Drawing.Size(75, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Upload file";
             // 
@@ -526,7 +734,7 @@
             // 
             this.t2_txt_open_folder.Location = new System.Drawing.Point(6, 114);
             this.t2_txt_open_folder.Name = "t2_txt_open_folder";
-            this.t2_txt_open_folder.Size = new System.Drawing.Size(362, 22);
+            this.t2_txt_open_folder.Size = new System.Drawing.Size(362, 23);
             this.t2_txt_open_folder.TabIndex = 3;
             // 
             // t2_btn_open_folder
@@ -543,7 +751,7 @@
             // 
             this.t2_txt_upload.Location = new System.Drawing.Point(6, 45);
             this.t2_txt_upload.Name = "t2_txt_upload";
-            this.t2_txt_upload.Size = new System.Drawing.Size(362, 22);
+            this.t2_txt_upload.Size = new System.Drawing.Size(362, 23);
             this.t2_txt_upload.TabIndex = 1;
             // 
             // t2_btn_upload
@@ -558,7 +766,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.t3_trv_bookmark_structure);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
@@ -567,14 +774,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Split by interval page";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // t3_trv_bookmark_structure
-            // 
-            this.t3_trv_bookmark_structure.Dock = System.Windows.Forms.DockStyle.Right;
-            this.t3_trv_bookmark_structure.Location = new System.Drawing.Point(850, 3);
-            this.t3_trv_bookmark_structure.Name = "t3_trv_bookmark_structure";
-            this.t3_trv_bookmark_structure.Size = new System.Drawing.Size(430, 578);
-            this.t3_trv_bookmark_structure.TabIndex = 6;
             // 
             // groupBox2
             // 
@@ -604,241 +803,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 167);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 16);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Interval page:";
-            // 
-            // t3_txt_interval_page
-            // 
-            this.t3_txt_interval_page.Location = new System.Drawing.Point(105, 167);
-            this.t3_txt_interval_page.Name = "t3_txt_interval_page";
-            this.t3_txt_interval_page.Size = new System.Drawing.Size(100, 22);
-            this.t3_txt_interval_page.TabIndex = 8;
-            this.t3_txt_interval_page.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t3_txt_interval_page_KeyPress);
-            // 
-            // t3_btn_run
-            // 
-            this.t3_btn_run.Location = new System.Drawing.Point(645, 484);
-            this.t3_btn_run.Name = "t3_btn_run";
-            this.t3_btn_run.Size = new System.Drawing.Size(138, 46);
-            this.t3_btn_run.TabIndex = 7;
-            this.t3_btn_run.Text = "Run";
-            this.t3_btn_run.UseVisualStyleBackColor = true;
-            this.t3_btn_run.Click += new System.EventHandler(this.t3_btn_run_Click);
-            // 
-            // t3_lb_file_name
-            // 
-            this.t3_lb_file_name.AutoSize = true;
-            this.t3_lb_file_name.Location = new System.Drawing.Point(371, 22);
-            this.t3_lb_file_name.Name = "t3_lb_file_name";
-            this.t3_lb_file_name.Size = new System.Drawing.Size(0, 16);
-            this.t3_lb_file_name.TabIndex = 6;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 92);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 16);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Output folder";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 16);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Upload file";
-            // 
-            // t3_txt_open_folder
-            // 
-            this.t3_txt_open_folder.Location = new System.Drawing.Point(6, 114);
-            this.t3_txt_open_folder.Name = "t3_txt_open_folder";
-            this.t3_txt_open_folder.Size = new System.Drawing.Size(362, 22);
-            this.t3_txt_open_folder.TabIndex = 3;
-            // 
-            // t3_btn_open_folder
-            // 
-            this.t3_btn_open_folder.Location = new System.Drawing.Point(374, 111);
-            this.t3_btn_open_folder.Name = "t3_btn_open_folder";
-            this.t3_btn_open_folder.Size = new System.Drawing.Size(112, 28);
-            this.t3_btn_open_folder.TabIndex = 2;
-            this.t3_btn_open_folder.Text = "Open folder";
-            this.t3_btn_open_folder.UseVisualStyleBackColor = true;
-            this.t3_btn_open_folder.Click += new System.EventHandler(this.t3_btn_open_folder_Click);
-            // 
-            // t3_txt_upload
-            // 
-            this.t3_txt_upload.Location = new System.Drawing.Point(6, 45);
-            this.t3_txt_upload.Name = "t3_txt_upload";
-            this.t3_txt_upload.Size = new System.Drawing.Size(362, 22);
-            this.t3_txt_upload.TabIndex = 1;
-            // 
-            // t3_btn_upload
-            // 
-            this.t3_btn_upload.Location = new System.Drawing.Point(374, 42);
-            this.t3_btn_upload.Name = "t3_btn_upload";
-            this.t3_btn_upload.Size = new System.Drawing.Size(112, 28);
-            this.t3_btn_upload.TabIndex = 0;
-            this.t3_btn_upload.Text = "Upload";
-            this.t3_btn_upload.UseVisualStyleBackColor = true;
-            this.t3_btn_upload.Click += new System.EventHandler(this.t3_btn_upload_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.t2_txt_seperate_custom);
-            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_3);
-            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_2);
-            this.groupBox3.Controls.Add(this.t2_rbtn_seperate_1);
-            this.groupBox3.Location = new System.Drawing.Point(10, 333);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(395, 100);
-            this.groupBox3.TabIndex = 27;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Seperate";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(171, 23);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 16);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Custom";
-            // 
-            // t2_txt_seperate_custom
-            // 
-            this.t2_txt_seperate_custom.Location = new System.Drawing.Point(174, 42);
-            this.t2_txt_seperate_custom.Name = "t2_txt_seperate_custom";
-            this.t2_txt_seperate_custom.Size = new System.Drawing.Size(88, 22);
-            this.t2_txt_seperate_custom.TabIndex = 18;
-            this.t2_txt_seperate_custom.TextChanged += new System.EventHandler(this.t2_txt_seperate_custom_TextChanged);
-            this.t2_txt_seperate_custom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_seperate_custom_KeyPress);
-            // 
-            // t2_rbtn_seperate_3
-            // 
-            this.t2_rbtn_seperate_3.AutoSize = true;
-            this.t2_rbtn_seperate_3.Location = new System.Drawing.Point(8, 73);
-            this.t2_rbtn_seperate_3.Name = "t2_rbtn_seperate_3";
-            this.t2_rbtn_seperate_3.Size = new System.Drawing.Size(32, 20);
-            this.t2_rbtn_seperate_3.TabIndex = 17;
-            this.t2_rbtn_seperate_3.TabStop = true;
-            this.t2_rbtn_seperate_3.Text = "-";
-            this.t2_rbtn_seperate_3.UseVisualStyleBackColor = true;
-            // 
-            // t2_rbtn_seperate_2
-            // 
-            this.t2_rbtn_seperate_2.AutoSize = true;
-            this.t2_rbtn_seperate_2.Location = new System.Drawing.Point(8, 47);
-            this.t2_rbtn_seperate_2.Name = "t2_rbtn_seperate_2";
-            this.t2_rbtn_seperate_2.Size = new System.Drawing.Size(35, 20);
-            this.t2_rbtn_seperate_2.TabIndex = 16;
-            this.t2_rbtn_seperate_2.TabStop = true;
-            this.t2_rbtn_seperate_2.Text = "_";
-            this.t2_rbtn_seperate_2.UseVisualStyleBackColor = true;
-            // 
-            // t2_rbtn_seperate_1
-            // 
-            this.t2_rbtn_seperate_1.AutoSize = true;
-            this.t2_rbtn_seperate_1.Location = new System.Drawing.Point(8, 21);
-            this.t2_rbtn_seperate_1.Name = "t2_rbtn_seperate_1";
-            this.t2_rbtn_seperate_1.Size = new System.Drawing.Size(42, 20);
-            this.t2_rbtn_seperate_1.TabIndex = 15;
-            this.t2_rbtn_seperate_1.TabStop = true;
-            this.t2_rbtn_seperate_1.Text = "@";
-            this.t2_rbtn_seperate_1.UseVisualStyleBackColor = true;
-            // 
-            // t2_cb_postfix_visible
-            // 
-            this.t2_cb_postfix_visible.AutoSize = true;
-            this.t2_cb_postfix_visible.Location = new System.Drawing.Point(383, 296);
-            this.t2_cb_postfix_visible.Name = "t2_cb_postfix_visible";
-            this.t2_cb_postfix_visible.Size = new System.Drawing.Size(68, 20);
-            this.t2_cb_postfix_visible.TabIndex = 26;
-            this.t2_cb_postfix_visible.Text = "visible";
-            this.t2_cb_postfix_visible.UseVisualStyleBackColor = true;
-            // 
-            // t2_cb_prefix_visible
-            // 
-            this.t2_cb_prefix_visible.AutoSize = true;
-            this.t2_cb_prefix_visible.Location = new System.Drawing.Point(383, 232);
-            this.t2_cb_prefix_visible.Name = "t2_cb_prefix_visible";
-            this.t2_cb_prefix_visible.Size = new System.Drawing.Size(68, 20);
-            this.t2_cb_prefix_visible.TabIndex = 25;
-            this.t2_cb_prefix_visible.Text = "visible";
-            this.t2_cb_prefix_visible.UseVisualStyleBackColor = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(11, 275);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(46, 16);
-            this.label15.TabIndex = 24;
-            this.label15.Text = "Postfix";
-            // 
-            // t2_txt_postfix
-            // 
-            this.t2_txt_postfix.Location = new System.Drawing.Point(11, 294);
-            this.t2_txt_postfix.Name = "t2_txt_postfix";
-            this.t2_txt_postfix.Size = new System.Drawing.Size(362, 22);
-            this.t2_txt_postfix.TabIndex = 23;
-            this.t2_txt_postfix.TextChanged += new System.EventHandler(this.t2_txt_postfix_TextChanged);
-            this.t2_txt_postfix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_postfix_KeyPress);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(11, 212);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 16);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "Prefix";
-            // 
-            // t2_txt_prefix
-            // 
-            this.t2_txt_prefix.Location = new System.Drawing.Point(11, 231);
-            this.t2_txt_prefix.Name = "t2_txt_prefix";
-            this.t2_txt_prefix.Size = new System.Drawing.Size(362, 22);
-            this.t2_txt_prefix.TabIndex = 21;
-            this.t2_txt_prefix.TextChanged += new System.EventHandler(this.t2_txt_prefix_TextChanged);
-            this.t2_txt_prefix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t2_txt_prefix_KeyPress);
-            // 
-            // t2_btn_check_file_name_output
-            // 
-            this.t2_btn_check_file_name_output.Location = new System.Drawing.Point(411, 438);
-            this.t2_btn_check_file_name_output.Name = "t2_btn_check_file_name_output";
-            this.t2_btn_check_file_name_output.Size = new System.Drawing.Size(75, 23);
-            this.t2_btn_check_file_name_output.TabIndex = 29;
-            this.t2_btn_check_file_name_output.Text = "Check";
-            this.t2_btn_check_file_name_output.UseVisualStyleBackColor = true;
-            this.t2_btn_check_file_name_output.Click += new System.EventHandler(this.t2_btn_check_file_name_output_Click);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 455);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(101, 16);
-            this.label17.TabIndex = 28;
-            this.label17.Text = "Output Example";
-            // 
-            // t2_rtxt_file_name_example
-            // 
-            this.t2_rtxt_file_name_example.Location = new System.Drawing.Point(10, 467);
-            this.t2_rtxt_file_name_example.Name = "t2_rtxt_file_name_example";
-            this.t2_rtxt_file_name_example.Size = new System.Drawing.Size(480, 59);
-            this.t2_rtxt_file_name_example.TabIndex = 20;
-            this.t2_rtxt_file_name_example.Text = "";
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label18);
@@ -858,7 +822,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(171, 23);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 16);
+            this.label18.Size = new System.Drawing.Size(55, 17);
             this.label18.TabIndex = 17;
             this.label18.Text = "Custom";
             // 
@@ -866,7 +830,7 @@
             // 
             this.t3_txt_seperate_custom.Location = new System.Drawing.Point(174, 42);
             this.t3_txt_seperate_custom.Name = "t3_txt_seperate_custom";
-            this.t3_txt_seperate_custom.Size = new System.Drawing.Size(88, 22);
+            this.t3_txt_seperate_custom.Size = new System.Drawing.Size(88, 23);
             this.t3_txt_seperate_custom.TabIndex = 18;
             this.t3_txt_seperate_custom.TextChanged += new System.EventHandler(this.t3_txt_seperate_custom_TextChanged);
             this.t3_txt_seperate_custom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t3_txt_seperate_custom_KeyPress);
@@ -876,7 +840,7 @@
             this.t3_rbtn_seperate_3.AutoSize = true;
             this.t3_rbtn_seperate_3.Location = new System.Drawing.Point(8, 73);
             this.t3_rbtn_seperate_3.Name = "t3_rbtn_seperate_3";
-            this.t3_rbtn_seperate_3.Size = new System.Drawing.Size(32, 20);
+            this.t3_rbtn_seperate_3.Size = new System.Drawing.Size(34, 21);
             this.t3_rbtn_seperate_3.TabIndex = 17;
             this.t3_rbtn_seperate_3.TabStop = true;
             this.t3_rbtn_seperate_3.Text = "-";
@@ -887,7 +851,7 @@
             this.t3_rbtn_seperate_2.AutoSize = true;
             this.t3_rbtn_seperate_2.Location = new System.Drawing.Point(8, 47);
             this.t3_rbtn_seperate_2.Name = "t3_rbtn_seperate_2";
-            this.t3_rbtn_seperate_2.Size = new System.Drawing.Size(35, 20);
+            this.t3_rbtn_seperate_2.Size = new System.Drawing.Size(37, 21);
             this.t3_rbtn_seperate_2.TabIndex = 16;
             this.t3_rbtn_seperate_2.TabStop = true;
             this.t3_rbtn_seperate_2.Text = "_";
@@ -898,7 +862,7 @@
             this.t3_rbtn_seperate_1.AutoSize = true;
             this.t3_rbtn_seperate_1.Location = new System.Drawing.Point(8, 21);
             this.t3_rbtn_seperate_1.Name = "t3_rbtn_seperate_1";
-            this.t3_rbtn_seperate_1.Size = new System.Drawing.Size(42, 20);
+            this.t3_rbtn_seperate_1.Size = new System.Drawing.Size(43, 21);
             this.t3_rbtn_seperate_1.TabIndex = 15;
             this.t3_rbtn_seperate_1.TabStop = true;
             this.t3_rbtn_seperate_1.Text = "@";
@@ -909,7 +873,7 @@
             this.t3_cb_postfix_visible.AutoSize = true;
             this.t3_cb_postfix_visible.Location = new System.Drawing.Point(383, 296);
             this.t3_cb_postfix_visible.Name = "t3_cb_postfix_visible";
-            this.t3_cb_postfix_visible.Size = new System.Drawing.Size(68, 20);
+            this.t3_cb_postfix_visible.Size = new System.Drawing.Size(69, 21);
             this.t3_cb_postfix_visible.TabIndex = 36;
             this.t3_cb_postfix_visible.Text = "visible";
             this.t3_cb_postfix_visible.UseVisualStyleBackColor = true;
@@ -919,7 +883,7 @@
             this.t3_cb_prefix_visible.AutoSize = true;
             this.t3_cb_prefix_visible.Location = new System.Drawing.Point(383, 232);
             this.t3_cb_prefix_visible.Name = "t3_cb_prefix_visible";
-            this.t3_cb_prefix_visible.Size = new System.Drawing.Size(68, 20);
+            this.t3_cb_prefix_visible.Size = new System.Drawing.Size(69, 21);
             this.t3_cb_prefix_visible.TabIndex = 35;
             this.t3_cb_prefix_visible.Text = "visible";
             this.t3_cb_prefix_visible.UseVisualStyleBackColor = true;
@@ -929,7 +893,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(11, 275);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(46, 16);
+            this.label19.Size = new System.Drawing.Size(49, 17);
             this.label19.TabIndex = 34;
             this.label19.Text = "Postfix";
             // 
@@ -937,7 +901,7 @@
             // 
             this.t3_txt_postfix.Location = new System.Drawing.Point(11, 294);
             this.t3_txt_postfix.Name = "t3_txt_postfix";
-            this.t3_txt_postfix.Size = new System.Drawing.Size(362, 22);
+            this.t3_txt_postfix.Size = new System.Drawing.Size(362, 23);
             this.t3_txt_postfix.TabIndex = 33;
             this.t3_txt_postfix.TextChanged += new System.EventHandler(this.t3_txt_postfix_TextChanged);
             this.t3_txt_postfix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t3_txt_postfix_KeyPress);
@@ -947,7 +911,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(11, 212);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 16);
+            this.label20.Size = new System.Drawing.Size(43, 17);
             this.label20.TabIndex = 32;
             this.label20.Text = "Prefix";
             // 
@@ -955,7 +919,7 @@
             // 
             this.t3_txt_prefix.Location = new System.Drawing.Point(11, 231);
             this.t3_txt_prefix.Name = "t3_txt_prefix";
-            this.t3_txt_prefix.Size = new System.Drawing.Size(362, 22);
+            this.t3_txt_prefix.Size = new System.Drawing.Size(362, 23);
             this.t3_txt_prefix.TabIndex = 31;
             this.t3_txt_prefix.TextChanged += new System.EventHandler(this.t3_txt_prefix_TextChanged);
             this.t3_txt_prefix.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t3_txt_prefix_KeyPress);
@@ -973,44 +937,136 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(7, 455);
+            this.label21.Location = new System.Drawing.Point(9, 456);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(101, 16);
+            this.label21.Size = new System.Drawing.Size(108, 17);
             this.label21.TabIndex = 38;
             this.label21.Text = "Output Example";
             // 
             // t3_rtxt_file_name_example
             // 
+            this.t3_rtxt_file_name_example.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.t3_rtxt_file_name_example.Location = new System.Drawing.Point(10, 467);
             this.t3_rtxt_file_name_example.Name = "t3_rtxt_file_name_example";
             this.t3_rtxt_file_name_example.Size = new System.Drawing.Size(480, 59);
             this.t3_rtxt_file_name_example.TabIndex = 30;
             this.t3_rtxt_file_name_example.Text = "";
             // 
-            // f_home
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 167);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 17);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Interval page:";
+            // 
+            // t3_txt_interval_page
+            // 
+            this.t3_txt_interval_page.Location = new System.Drawing.Point(105, 167);
+            this.t3_txt_interval_page.Name = "t3_txt_interval_page";
+            this.t3_txt_interval_page.Size = new System.Drawing.Size(100, 23);
+            this.t3_txt_interval_page.TabIndex = 8;
+            this.t3_txt_interval_page.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.t3_txt_interval_page_KeyPress);
+            // 
+            // t3_btn_run
+            // 
+            this.t3_btn_run.Location = new System.Drawing.Point(645, 484);
+            this.t3_btn_run.Name = "t3_btn_run";
+            this.t3_btn_run.Size = new System.Drawing.Size(138, 46);
+            this.t3_btn_run.TabIndex = 7;
+            this.t3_btn_run.Text = "Run";
+            this.t3_btn_run.UseVisualStyleBackColor = true;
+            this.t3_btn_run.Click += new System.EventHandler(this.t3_btn_run_Click);
+            // 
+            // t3_lb_file_name
+            // 
+            this.t3_lb_file_name.AutoSize = true;
+            this.t3_lb_file_name.Location = new System.Drawing.Point(371, 22);
+            this.t3_lb_file_name.Name = "t3_lb_file_name";
+            this.t3_lb_file_name.Size = new System.Drawing.Size(0, 17);
+            this.t3_lb_file_name.TabIndex = 6;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 92);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(91, 17);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Output folder";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(75, 17);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Upload file";
+            // 
+            // t3_txt_open_folder
+            // 
+            this.t3_txt_open_folder.Location = new System.Drawing.Point(6, 114);
+            this.t3_txt_open_folder.Name = "t3_txt_open_folder";
+            this.t3_txt_open_folder.Size = new System.Drawing.Size(362, 23);
+            this.t3_txt_open_folder.TabIndex = 3;
+            // 
+            // t3_btn_open_folder
+            // 
+            this.t3_btn_open_folder.Location = new System.Drawing.Point(374, 111);
+            this.t3_btn_open_folder.Name = "t3_btn_open_folder";
+            this.t3_btn_open_folder.Size = new System.Drawing.Size(112, 28);
+            this.t3_btn_open_folder.TabIndex = 2;
+            this.t3_btn_open_folder.Text = "Open folder";
+            this.t3_btn_open_folder.UseVisualStyleBackColor = true;
+            this.t3_btn_open_folder.Click += new System.EventHandler(this.t3_btn_open_folder_Click);
+            // 
+            // t3_txt_upload
+            // 
+            this.t3_txt_upload.Location = new System.Drawing.Point(6, 45);
+            this.t3_txt_upload.Name = "t3_txt_upload";
+            this.t3_txt_upload.Size = new System.Drawing.Size(362, 23);
+            this.t3_txt_upload.TabIndex = 1;
+            // 
+            // t3_btn_upload
+            // 
+            this.t3_btn_upload.Location = new System.Drawing.Point(374, 42);
+            this.t3_btn_upload.Name = "t3_btn_upload";
+            this.t3_btn_upload.Size = new System.Drawing.Size(112, 28);
+            this.t3_btn_upload.TabIndex = 0;
+            this.t3_btn_upload.Text = "Upload";
+            this.t3_btn_upload.UseVisualStyleBackColor = true;
+            this.t3_btn_upload.Click += new System.EventHandler(this.t3_btn_upload_Click);
+            // 
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1291, 613);
             this.Controls.Add(this.tc_split_by_bookmark);
-            this.Name = "f_home";
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PDF Extensions";
-            this.Load += new System.EventHandler(this.f_home_Load);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.tc_split_by_bookmark.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.grb_in_out.ResumeLayout(false);
             this.grb_in_out.PerformLayout();
+            this.t1_grb_action_view.ResumeLayout(false);
+            this.t1_grb_action_view.PerformLayout();
             this.t1_gb_seperate.ResumeLayout(false);
             this.t1_gb_seperate.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
@@ -1041,13 +1097,11 @@
         private System.Windows.Forms.Button t2_btn_open_folder;
         private System.Windows.Forms.TextBox t2_txt_upload;
         private System.Windows.Forms.Button t2_btn_upload;
-        private System.Windows.Forms.TreeView t2_trv_bookmark_structure;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox t2_txt_topage;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox t2_txt_frompage;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TreeView t3_trv_bookmark_structure;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox t3_txt_interval_page;
@@ -1104,6 +1158,11 @@
         private System.Windows.Forms.Button t3_btn_check_file_name_output;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.RichTextBox t3_rtxt_file_name_example;
+        private System.Windows.Forms.GroupBox t1_grb_action_view;
+        private System.Windows.Forms.RadioButton t1_rbtn_actions_lv3;
+        private System.Windows.Forms.RadioButton t1_rbtn_actions_lv2;
+        private System.Windows.Forms.RadioButton t1_rbtn_actions_lv1;
+        private System.Windows.Forms.RadioButton t1_rbtn_actions_all;
     }
 }
 

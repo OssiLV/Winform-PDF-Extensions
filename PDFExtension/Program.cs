@@ -16,7 +16,7 @@ namespace PDFExtension
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new f_home());
+            Application.Run(new Home());
         }
     }
 }
